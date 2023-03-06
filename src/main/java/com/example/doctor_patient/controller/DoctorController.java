@@ -17,13 +17,12 @@ public class DoctorController{
 
     @PostMapping("/add-doctor")
     public ResponseEntity<String> addDoctor(@RequestBody String doctorData){
-        List<String> errorCheck=DocUtil.Validate(doctorData);
+        List<String> errorCheck=DocUtil.validateDoctor(doctorData);
         if(errorCheck.isEmpty()){
             Doctor doctor=DocUtil.setDoctorData(doctorData);
             doctorservice.addDoctor(doctor);
             return new ResponseEntity<>("Doctor data added successfully",HttpStatus.CREATED);
         }else {
-//            String[] ans= Arrays.copyOf(errorCheck.toArray(),errorCheck.size(),String[].class);
             return new ResponseEntity<String>("please provide " +errorCheck.toString(), HttpStatus.BAD_REQUEST);
         }
     }

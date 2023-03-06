@@ -9,17 +9,17 @@ import java.util.List;
 
 @Component
 public class DocUtil {
-     public static List<String> Validate(String doctorData) {
+     public static List<String> validateDoctor(String doctorData) {
         List<String> errorList=new ArrayList<>();
         JSONObject jsonObject=new JSONObject(doctorData);
         if(!jsonObject.has("doctorName")){
-            errorList.add("please enter doctor name as (doctorName)");
+            errorList.add("please enter (doctorName)");
         }
         if(!jsonObject.has("doctorExp")){
-            errorList.add("please enter doctor's experience as (doctorExp)");
+            errorList.add("please enter (doctorExp)");
         }
         if(!jsonObject.has("specializedIn")){
-            errorList.add("please enter doctor's specializedIn as (specializedIn");
+            errorList.add("please enter (specializedIn)");
         }
         return errorList;
 

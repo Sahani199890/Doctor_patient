@@ -23,4 +23,17 @@ public class PatientService {
     public List<Patient> findAll() {
         return iPatient.findAll();
     }
+
+    public Patient updatePatient(Patient patient, Integer patientId) {
+        Patient patient1=iPatient.findById(patientId).get();
+        patient1.setPatientDisease(patient.getPatientDisease());
+        patient1.setPatientNumber(patient.getPatientNumber());
+        patient1.setPatientName(patient.getPatientName());
+        patient1.setGender(patient.getGender());
+        return patient1;
+    }
+
+    public void deletePatient(Integer patientId) {
+        iPatient.deleteById(patientId);
+    }
 }
