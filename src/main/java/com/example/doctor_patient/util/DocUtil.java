@@ -13,13 +13,19 @@ public class DocUtil {
         List<String> errorList=new ArrayList<>();
         JSONObject jsonObject=new JSONObject(doctorData);
         if(!jsonObject.has("doctorName")){
-            errorList.add("please enter (doctorName)");
+            errorList.add("doctorName");
+        }
+        else {
+            String doctorName = jsonObject.getString("doctorName");
+            if(doctorName.length()<4 || doctorName.length()>20){
+                errorList.add("please correct the name in [4,20]");
+            }
         }
         if(!jsonObject.has("doctorExp")){
-            errorList.add("please enter (doctorExp)");
+            errorList.add("doctorExp");
         }
         if(!jsonObject.has("specializedIn")){
-            errorList.add("please enter (specializedIn)");
+            errorList.add("specializedIn");
         }
         return errorList;
 

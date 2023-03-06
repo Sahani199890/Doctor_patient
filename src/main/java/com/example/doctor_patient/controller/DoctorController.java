@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -20,10 +21,12 @@ public class DoctorController{
         List<String> errorCheck=DocUtil.validateDoctor(doctorData);
         if(errorCheck.isEmpty()){
             Doctor doctor=DocUtil.setDoctorData(doctorData);
-            doctorservice.addDoctor(doctor);
-            return new ResponseEntity<>("Doctor data added successfully",HttpStatus.CREATED);
+            Doctor doctor1 = doctorservice.addDoctor(doctor);
+            return new ResponseEntity<>("Doctor data added successfully"+doctor1.toString(),HttpStatus.CREATED);
         }else {
-            return new ResponseEntity<String>("please provide " +errorCheck.toString(), HttpStatus.BAD_REQUEST);
+            String[] answer = Arrays.copyOf(
+                    errorCheck.toArray(), errorCheck.size(), String[].class);
+            return new ResponseEntity<String>("please provide :" +Arrays.toString(answer), HttpStatus.BAD_REQUEST);
         }
     }
 

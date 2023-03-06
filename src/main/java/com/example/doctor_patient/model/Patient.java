@@ -19,6 +19,6 @@ public class Patient {
     private String patientNumber;
     private String patientDisease;
     private String gender;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Doctor doctorId;
+    @ManyToOne
+    private Doctor doctor;
 }
